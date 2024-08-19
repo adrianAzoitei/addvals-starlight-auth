@@ -6,14 +6,22 @@ import { getSession } from 'auth-astro/server'
 const session = await getSession(Astro.request)
 
 const frontmatter: StarlightPageProps['frontmatter'] = {
-  title: 'Starlight + Auth',
+  title: 'Welcome to Appvision Documentation',
   template: 'splash',
   hero: {
-    tagline: 'A template for adding auth to your Starlight site.',
+    tagline: 'Find all the informations you need to setup your brand new AppVision project !',
+    image: {
+      file: {
+        src: '../..assets/mainpage.webp',
+        format: 'webp',
+        width: 100,
+        height: 100
+      }
+    },
     actions: [
       session ? {
         text: 'Get started',
-        link: '/guides/example/',
+        link: '/welcome',
         icon: 'right-arrow',
         variant: 'primary'
       } : {
@@ -22,11 +30,6 @@ const frontmatter: StarlightPageProps['frontmatter'] = {
         icon: 'right-arrow',
         variant: 'primary'
       },
-      {
-        text: 'Read the Starlight docs',
-        link: 'https://starlight.astro.build',
-        icon: 'external'
-      }
     ]
   }
 }
