@@ -1,0 +1,23 @@
+---
+title: 32 bits mode
+description: A guide to the Appvision GIS
+tableOfContents:
+  minHeadingLevel: 1
+  maxHeadingLevel: 5
+---
+
+
+On a 64-bit system, the client and server run in 64-bit. But a few external modules (video player, ...) are not compatible and only authorize 32-bit. In this case it is possible to force the client to run in 32-bit mode. AppVision™ client and configurator to 32-bit by running the `ConvertTo32bits.bat` file, located in the `$Bin` directory of AppVision™.
+
+`ConvertTo32bits.bat` generates two files: `AppClient32.exe` and `AppConfig32.exe` used instead of `AppClient.exe` and `AppConfig.exe`.
+
+:::note
+- Run this file **as an administrator**
+- Use `AppClient.exe` on the client machine
+- Do not forget to change the shortcut on the desktops
+- In the `$Bin` folder of the AppVision™ server, do not delete the `AppClient.exe` and `AppConfig.exe` (even if they are not used)
+:::
+
+:::danger
+**It is not possible to have a 32-bit external module coexisting with another 64-bit external module.**
+:::

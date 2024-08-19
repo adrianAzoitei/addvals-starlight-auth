@@ -1,0 +1,111 @@
+---
+title: Client
+description: A guide to the Appvision GIS
+tableOfContents:
+  minHeadingLevel: 1
+  maxHeadingLevel: 5
+---
+
+Before installing the software, close all other applications running on the system.
+
+- Run `SetupClient.exe` and the instructions in the `readme.txt` file
+- The installation process is self-documented, follow the instructions of the installation program
+
+Installing the client software creates shortcuts on the Windows desktop:
+
+- _"AppVision configurator"_, the AppVision™ configuration tool, able to connect the server from a distinct workstation
+- _"AppVision client"_, an AppVision™ client
+
+#### "AppVision Client", an AppVision™ Client Directories
+
+By default, AppVision™ uses the following directories on the server:
+
+- `"C:\Program Files\AppVision 4\Bin"` or `$Bin` below in this documentation, contains the executable files
+- `"C:\Program Files\AppVision 4\Documentations"`: AppVision™ documentation
+- `"C:\Program Files\AppVision 4\Configurations"`: AppVision™ configurations. The current working configuration directory is called `$Config` below.
+- `"C:\ProgramData\AppVision 4\LogFiles"`: log files
+- `"Documents\AppVision"`: export files, printing, ...
+
+:::note
+When upgrading to version 4.6 or higher from a previous version, the old directories located in `"C:\Program Files (x86)\AppVision 4.0"` are kept.
+:::
+
+
+The `appclient.exe.config` file contains configuration settings for the AppVision™ client process, it is in the `C:\Program Files\AppVision 4\Bin` directory of each client workstation.
+
+The settings are configured in the `<appSettings>` section, for example:
+
+```
+<appSettings>
+    <add key="PortWebService" value="80" />
+    <add key="IpWebService" value="192.168.0.100" />
+</appSettings>
+```
+
+### List of parameters:
+
+<table>
+    <thead>
+        <tr class="first-row">
+            <th>NAME</th>
+            <th>DESCRIPTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>`DiagnosticEnable`</td>
+            <td>True/False: enable regular recording of performance counters in the client log file (False by default).</td>
+        </tr>
+        <tr>
+            <td>`HttpsWebService`</td>
+            <td>True/False: see details below.</td>
+        </tr>
+        <tr>
+            <td>`IpWebService`</td>
+            <td>See details below.</td>
+        </tr>
+        <tr>
+            <td>`PathExport`</td>
+            <td>Directory containing the CSV export files (by default My Documents).</td>
+        </tr>
+        <tr>
+            <td>`PathPrinting`</td>
+            <td>Directory containing the PDF print files (by default My Documents).</td>
+        </tr>
+        <tr>
+            <td>`PathSnapshot`</td>
+            <td>Directory containing the screenshot files (by default My Documents).</td>
+        </tr>
+        <tr>
+            <td>`PathVideo`</td>
+            <td>Directory containing the video export files (by default My Documents).</td>
+        </tr>
+        <tr>
+            <td>`PathBackup`</td>
+            <td>Directory containing the configuration or history backup files (by default My Documents).</td>
+        </tr>
+        <tr>
+            <td>`PortWebService`</td>
+            <td>See details below.</td>
+        </tr>
+        <tr>
+            <td>`SingleInstance`</td>
+            <td>True/False: to allow/prevent the launching of the client in several instances (False by default)</td>
+        </tr>
+        <tr>
+            <td>`Timeout`</td>
+            <td>Timeout in seconds for response to HTTP requests (30 by default)</td>
+        </tr>
+    </tbody>
+</table>
+
+PortWebService, IpWebService, and HttpsWebService parameters: the Windows client can be configured to use a web service to receive events on a TCP port with the PortWebService parameter.
+
+- 0: indicates the default port 80, or the server port if the client is on the server,
+- -1: the web service is disabled on the client side, acquisition of events by polling,
+
+If the client-side web service is enabled, the HttpsWebService parameter allows to use the HTTPS protocol to secure the communications.
+
+In the case of a client with several network cards, it is possible to specify the IP address of the client used to communicate with the server with the parameter IpWebService.
+
+By default, the web service is disabled.

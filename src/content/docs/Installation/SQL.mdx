@@ -1,0 +1,83 @@
+---
+title: SQL DB
+description: A guide to the Appvision GIS
+tableOfContents:
+  minHeadingLevel: 1
+  maxHeadingLevel: 5
+---
+
+
+
+By default, the installation sets up AppVision™ on a local SQL Server database on the AppVision™ server.
+
+It is possible to externalize the database to another existing SQL Server instance.
+
+For this you need:
+
+- Installing standard SQL Server (on the workstation hosting the AppVision™ server, or on another one)
+  - Name the instance, for example "SQLEXPRESS"
+  - Choose the authentication mode, Windows trusted connection or login / password
+- With the "Configuration Manager" tool
+  - Configure SQL for named channels and TCP-IP
+  - Restart `sqlsrv` and `sqlbrowser` services
+- Start SQL Server Management studio (or another administration tool)
+  - Using the SQL script editor, create the AppVision™ databases using the SQL scripts provided in the `$Bin` directory: `Param.sql`, `Histo.sql`, `State.sql`, and `AppControl.sql`
+  - Check for each base the recovery mode: simple
+- Modify the database connection strings in the `$Bin/appserver.exe.config` file
+
+Example SQL installed on the same machine as the AppVision™ server Windows identification:
+
+```
+<connectionStrings>
+    <add name="ParamContext"
+         connectionString="Data Source=.\SQLEXPRESS; Initial Catalog=AppParamV4; User Instance=False; Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+    
+    <add name="HistoContext"
+         connectionString="Data Source=.\SQLEXPRESS; Initial Catalog=AppHistoV4; User Instance=False; Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+    
+    <add name="StateContext"
+         connectionString="Data Source=.\SQLEXPRESS; Initial Catalog=AppStateV4; User Instance=False; Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+    
+    <add name="AppControlContext"
+         connectionString="Data Source=.\SQLEXPRESS; Initial Catalog=AppControlV4; User Instance=False; Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+</connectionStrings>
+
+
+```
+
+Example SQL installed on a remote computer identifying SQL server:
+
+```
+<connectionStrings>
+    <add name="ParamContext"
+         connectionString="Data Source=PCSQL\SQLEXPRESS; Initial Catalog=AppParamV4; User ID=sa; Password=PwdApp35;"
+         providerName="System.Data.SqlClient" />
+    
+    <add name="HistoContext"
+         connectionString="Data Source=PCSQL\SQLEXPRESS; Initial Catalog=AppHistoV4; User ID=sa; Password=PwdApp35;"
+         providerName="System.Data.SqlClient" />
+    
+    <add name="StateContext"
+         connectionString="Data Source=PCSQL\SQLEXPRESS; Initial Catalog=AppStateV4; User ID=sa; Password=PwdApp35;"
+         providerName="System.Data.SqlClient" />
+    
+    <add name="AppControlContext"
+         connectionString="Data Source=PCSQL\SQLEXPRESS; Initial Catalog=AppControlV4; User ID=sa; Password=PwdApp35;"
+         providerName="System.Data.SqlClient" />
+</connectionStrings>
+```
+
+For the restoration of history it is also necessary to add the connection string MasterContext:
+
+```
+<connectionStrings>
+    <add name="MasterContext"
+    connectionString="Data Source=.\SQLEXPRESS; Initial Catalog=master; User Instance=False; Integrated Security=True;" providerName="System.Data.SqlClient" />
+</connectionStrings>
+```
+
+
