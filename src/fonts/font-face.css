@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'F37 Ginger';
+  src: url('F37Ginger-Bold.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-Bold.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-Bold.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-Bold.svg#7db0a735880422cc5fa2f936a390d651') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  700;
+}
+
+
+@font-face {
+  font-family: 'F37 Ginger';
+  src: url('F37Ginger-Italic.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-Italic.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-Italic.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-Italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-Italic.svg#630483153372c6803c45567348abcad0') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'F37 Ginger Light';
+  src: url('F37Ginger-Light.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-Light.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-Light.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-Light.svg#4a1efc7fd28af5705abda90f380987ed') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  200;
+}
+
+@font-face {
+  font-family: 'F37 Ginger Light';
+  src: url('F37Ginger-LightItalic.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-LightItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-LightItalic.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-LightItalic.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-LightItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-LightItalic.svg#1c7eff18379a490689d240dabfae793f') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  200;
+}
+
+@font-face {
+  font-family: 'F37 Ginger';
+  src: url('F37Ginger-Regular.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-Regular.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-Regular.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-Regular.svg#cd0eb1181545a540be3acd13cd87c831') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'F37 Ginger Thin';
+  src: url('F37Ginger-Thin.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-Thin.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-Thin.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-Thin.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-Thin.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-Thin.svg#f3e13b7d84e2887d1408955c128d7a0a') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  200;
+}
+
+@font-face {
+  font-family: 'F37 Ginger Thin';
+  src: url('F37Ginger-ThinItalic.eot'); /* IE9 Compat Modes */
+  src: url('F37Ginger-ThinItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('F37Ginger-ThinItalic.woff') format('woff'), /* Modern Browsers */
+       url('F37Ginger-ThinItalic.woff2') format('woff2'), /* Modern Browsers */
+       url('F37Ginger-ThinItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('F37Ginger-ThinItalic.svg#337ef199cf72f1b39d8898efcdfd3ac9') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  200;
+}
+

@@ -6,7 +6,8 @@ import type { FullAuthConfig } from "auth-astro/src/config"
  * An array of path prefixes to require authentication for.
  */
 export const paths = [
-  '/installation'
+  '/installation',
+  '/welcome'
 ]
 
 /**
