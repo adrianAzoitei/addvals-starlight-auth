@@ -22,6 +22,7 @@ export async function isAuthed(req: Request, options: FullAuthConfig) {
   if (!paths.find(p => url.pathname.startsWith(p))) return true
 
   const session = await getSession(req, options)
+  console.log(session);
 
   if (!session) return false
 
