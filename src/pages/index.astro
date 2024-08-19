@@ -1,7 +1,8 @@
 ---
 import type { Props } from '@astrojs/starlight/props'
 import StarlightPage, { type StarlightPageProps } from '@astrojs/starlight/components/StarlightPage.astro'
-import { getSession } from 'auth-astro/server'
+import { getSession } from 'auth-astro/server';
+import mainpage from '../assets/mainpage.webp';
 
 const session = await getSession(Astro.request)
 
@@ -11,12 +12,7 @@ const frontmatter: StarlightPageProps['frontmatter'] = {
   hero: {
     tagline: 'Find all the informations you need to setup your brand new AppVision project !',
     image: {
-      file: {
-        src: '../assets/mainpage.webp',
-        format: 'webp',
-        width: 100,
-        height: 100
-      }
+      file: mainpage
     },
     actions: [
       session ? {
