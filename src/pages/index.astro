@@ -7,10 +7,10 @@ import mainpage from '../assets/mainpage.webp';
 const session = await getSession(Astro.request)
 
 const frontmatter: StarlightPageProps['frontmatter'] = {
-  title: 'Welcome to Appvision Documentation',
+  title: session ? `Hi ${session.user?.name}! Welcome to Appvision Documentation` : 'Welcome to Appvision Documentation',
   template: 'splash',
   hero: {
-    tagline: 'Find all the informations you need to setup your brand new AppVision project !',
+    tagline: session ? 'Find all the informations you need to setup your brand new AppVision project !' : 'Please sign in / up first.',
     image: {
       file: mainpage
     },

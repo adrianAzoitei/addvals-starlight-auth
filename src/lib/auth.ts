@@ -1,14 +1,13 @@
 import { Auth, type AuthConfig } from "@auth/core"
-import type { Session } from "@auth/core/types"
 import type { FullAuthConfig } from "auth-astro/src/config"
 
 /**
  * An array of path prefixes to require authentication for.
  */
-export const paths = [
-  '/installation',
-  '/welcome'
-]
+export const paths = {
+  '/installation': 'installation',
+  '/welcome': 'general'
+}
 
 /**
  * Check if the request is authorized.
@@ -19,9 +18,11 @@ export const paths = [
 export async function isAuthed(req: Request, options: FullAuthConfig) {
   // @ts-ignore Logic to deal with runtime differences
   const url = new URL(req.url.pathname ?? req.url, `${process.env.DEV ? 'http' : 'https'}://${req.headers.host}`)
-  if (!paths.find(p => url.pathname.startsWith(p))) return true
+  const basePath = Object.keys(paths).find(p => url.pathname.startsWith(p)); 
+  if (!basePath) return true
 
   const session = await getSession(req, options)
+  console.log(session?.user?.roles);
 
   if (!session) return false
 
@@ -29,7 +30,7 @@ export async function isAuthed(req: Request, options: FullAuthConfig) {
   // Add custom authorization steps //
   ////////////////////////////////////
 
-  return true
+  return session?.user?.roles?.includes((paths as any)[basePath]);
 }
 
 /**
@@ -56,4 +57,18 @@ export async function getSession(req: Request, options: AuthConfig): Promise<Ses
 	if (!data || !Object.keys(data).length) return null
 	if (status === 200) return data
 	throw new Error(data.message)
+}
+type ISODateString = string
+
+interface Session {
+  user?: User
+  expires: ISODateString 
+}
+
+export interface User {
+  id?: string
+  name?: string | null
+  email?: string | null
+  image?: string | null
+  roles?: string[] | null
 }

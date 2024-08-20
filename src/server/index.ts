@@ -14,14 +14,14 @@ const authConfig = generateConfig({
   issuer: process.env.KEYCLOAK_ISSUER!
 })
 
-const notFoundPage = fs.readFileSync(join(new URL(options.client).pathname, '404.html'), 'utf8')
+const unauthorizedPage = fs.readFileSync(join(new URL(options.client).pathname, '401', 'index.html'), 'utf8')
 
 const app = express();
 const handleStatic = express.static('dist/client/')
 
 function notFound(req: Request, res: Response, next: NextFunction) {
-  res.status(404)
-  res.send(notFoundPage);
+  res.status(401)
+  res.send(unauthorizedPage);
 }
 
 app.use(async (req, res, next) => {
