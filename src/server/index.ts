@@ -9,8 +9,9 @@ import { isAuthed } from '../lib/auth.ts'
 config()
 
 const authConfig = generateConfig({
-  clientId: process.env.GITHUB_CLIENT_ID!,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET!
+  clientId: process.env.CLIENT_ID!,
+  clientSecret: process.env.CLIENT_SECRET!,
+  issuer: process.env.KEYCLOAK_ISSUER!
 })
 
 const notFoundPage = fs.readFileSync(join(new URL(options.client).pathname, '404.html'), 'utf8')

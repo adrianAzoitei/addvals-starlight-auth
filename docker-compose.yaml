@@ -1,0 +1,35 @@
+name: addvals-starlight-auth
+
+services:
+  db:
+    image: postgres
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - db_home:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+  keycloak:
+    image: bitnami/keycloak:25.0.4-debian-12-r0
+    container_name: keycloak
+    depends_on:
+      - db
+    environment:
+      KEYCLOAK_DATABASE_HOST: db
+      KEYCLOAK_DATABASE_USER: postgres
+      KEYCLOAK_DATABASE_PASSWORD: postgres
+      KEYCLOAK_DATABASE_NAME: keycloak
+    ports:
+      - "8080:8080"
+
+# networks:
+#   host:
+#     driver: host
+
+volumes:
+  db_home:
+    external: false
