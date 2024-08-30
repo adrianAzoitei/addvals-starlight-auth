@@ -11,7 +11,9 @@ config()
 const authConfig = generateConfig({
   clientId: process.env.CLIENT_ID!,
   clientSecret: process.env.CLIENT_SECRET!,
-  issuer: process.env.KEYCLOAK_ISSUER!
+  issuer: process.env.ISSUER!,
+  namespace: process.env.AUTH0_NAMESPACE!,
+  audience: process.env.AUTH0_AUDIENCE!
 })
 
 const unauthorizedPage = fs.readFileSync(join(new URL(options.client).pathname, '401', 'index.html'), 'utf8')

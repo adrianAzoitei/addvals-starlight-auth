@@ -22,7 +22,10 @@ export async function isAuthed(req: Request, options: FullAuthConfig) {
   if (!basePath) return true
 
   const session = await getSession(req, options)
-  console.log(session?.user?.roles);
+  console.log("getSession")
+  console.log(session);
+  console.log(session?.user);
+  // console.log(session?.user?.roles);
 
   if (!session) return false
 
