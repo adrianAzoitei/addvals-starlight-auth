@@ -29,9 +29,10 @@ function notFound(req: Request, res: Response, next: NextFunction) {
 app.use(async (req, res, next) => {
   // @ts-ignore
   if (!await isAuthed(req, authConfig)) return notFound(req, res, next)
-
   // handle static files first, then fallback on the SSR handler before hitting 404
   handleStatic(req, res, () => ssrHandler(req, res, () => notFound(req, res, next)));
 });
 
-app.listen(4321);
+app.listen(process.env.PORT, function() {
+  console.log(`Listening on port: ${process.env.PORT}`);
+});
