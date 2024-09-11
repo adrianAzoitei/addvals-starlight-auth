@@ -95,11 +95,7 @@ export function generateConfig({
 					refresh_token: token.refresh_token,
 					error: token.error
 				};
-			}
-		// async signIn({ profile }) {
-		//    // Only allow sign in for users with email addresses ending with "yourdomain.com"
-		//    return profile?.email?.endsWith("@gmail.com")
-		//  }
+			},
 	}
 }
 }
