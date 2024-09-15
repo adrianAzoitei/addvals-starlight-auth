@@ -5,18 +5,10 @@ export const prerender = true;
 
 
 const frontmatter: StarlightPageProps['frontmatter'] = {
-  title: 'You must be authenticated to access this resource.',
+  title: 'It seems you do not have the necessary permssions to access this resource.',
   template: 'splash',
   hero: {
-    tagline: 'Sign in or create a new account below.',
-    actions: [
-      {
-      text: 'Sign in',
-        link: '/auth/signin',
-        icon: 'right-arrow',
-        variant: 'primary'
-      },
-    ]
+    tagline: 'The system administrator must assign you the right permissions.',
   }
 }
 ---

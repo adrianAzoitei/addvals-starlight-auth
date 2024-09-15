@@ -15,11 +15,11 @@ export const paths = {
  * @param options Your auth config
  * @returns `true` if the request is authorized, `false` otherwise
  */
-export async function isAuthed(req: Request, options: FullAuthConfig) {
+export async function isAuthed(req: Request, options: FullAuthConfig): Promise<AuthResult> {
   // @ts-ignore Logic to deal with runtime differences
   const url = new URL(req.url.pathname ?? req.url, `${process.env.DEV ? 'http' : 'https'}://${req.headers.host}`)
   const basePath = Object.keys(paths).find(p => url.pathname.startsWith(p)); 
-  if (!basePath) return true
+  if (!basePath) return AuthResult.Ok;
 
   const session = await getSession(req, options)
   console.log("getSession")
@@ -27,13 +27,13 @@ export async function isAuthed(req: Request, options: FullAuthConfig) {
   console.log(session?.user);
   // console.log(session?.user?.roles);
 
-  if (!session) return false
+  if (!session) return AuthResult.Unauthenticated;
 
   ////////////////////////////////////
   // Add custom authorization steps //
   ////////////////////////////////////
 
-  return session?.user?.roles?.includes((paths as any)[basePath]);
+  return session?.user?.roles?.includes((paths as any)[basePath]) ? AuthResult.Ok : AuthResult.Unauthorized;
 }
 
 /**
@@ -74,4 +74,10 @@ export interface User {
   email?: string | null
   image?: string | null
   roles?: string[] | null
+}
+
+export enum AuthResult {
+  Ok,
+  Unauthenticated,
+  Unauthorized
 }

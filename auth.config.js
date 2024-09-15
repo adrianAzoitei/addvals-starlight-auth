@@ -50,7 +50,6 @@ export function generateConfig({
 					return token;
 				}
 				if (!token.refresh_token || !token.id_token || !token.access_token) {
-				// if (!token.id_token || !token.access_token) {
 					return {};
 				}
 				return token;
@@ -60,28 +59,27 @@ export function generateConfig({
 				console.log("SESSION");
 				console.log(token)
 				if (!token.access_token || !token.refresh_token || !token.id_token) {
-				// if (!token.access_token || !token.id_token) {
 					return { ...token, expires: session.expires };
 				}
 
-				// if token almost expires (compare with exp.)
-				var options = {
-					method: 'POST',
-					url: `${issuer}/oauth/token`,
-					headers: {'content-type': 'application/x-www-form-urlencoded'},
-					data: new URLSearchParams({
-					  grant_type: 'refresh_token',
-					  client_id: clientId,
-					  client_secret: clientSecret,
-					  refresh_token: token.refresh_token
-					})
-				  };
+				// // if token almost expires (compare with exp.)
+				// var options = {
+				// 	method: 'POST',
+				// 	url: `${issuer}/oauth/token`,
+				// 	headers: {'content-type': 'application/x-www-form-urlencoded'},
+				// 	data: new URLSearchParams({
+				// 	  grant_type: 'refresh_token',
+				// 	  client_id: clientId,
+				// 	  client_secret: clientSecret,
+				// 	  refresh_token: token.refresh_token
+				// 	})
+				//   };
 				  
-				  axios.request(options).then(function (response) {
-					console.log(response.data);
-				  }).catch(function (error) {
-					console.error(error);
-				  });
+				//   axios.request(options).then(function (response) {
+				// 	console.log(response.data);
+				//   }).catch(function (error) {
+				// 	console.error(error);
+				//   });
 
 				return {
 					expires: session.expires,
