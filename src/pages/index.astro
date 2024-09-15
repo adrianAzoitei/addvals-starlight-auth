@@ -31,30 +31,7 @@ const frontmatter: StarlightPageProps['frontmatter'] = {
 }
 ---
 
-<StarlightPage {frontmatter}>
-  {
-    session && (
-      <sign-out>
-        <button class="action">Sign out</button>
-      </sign-out>
-    )
-  }
-</StarlightPage>
-
-<script>
-  import { signOut } from 'auth-astro/client'
-
-  class SignOut extends HTMLElement {
-    btn = this.querySelector('button')
-
-    constructor() {
-      super()
-      this.btn?.addEventListener('click', () => signOut({ prefix: '/auth' }))
-    }
-  }
-
-  customElements.define('sign-out', SignOut)
-</script>
+<StarlightPage {frontmatter} />
 
 <style>
   .action {

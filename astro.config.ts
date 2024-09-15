@@ -239,7 +239,10 @@ export default defineConfig({
       autogenerate: {
         directory: 'sdk'
       }
-    }]
+    }],
+    components: {
+      Header: './src/components/Header.astro'
+    }
   })],
   output: 'server',
   adapter: node({

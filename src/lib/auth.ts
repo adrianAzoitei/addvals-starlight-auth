@@ -4,10 +4,12 @@ import type { FullAuthConfig } from "auth-astro/src/config";
 /**
  * An array of path prefixes to require authentication for.
  */
-export const paths = {
-  '/installation': 'installation',
-  '/welcome': 'general'
-}
+// export const paths = {
+//   '/installation': 'installation',
+//   '/welcome': 'general'
+// }
+
+export const paths = JSON.parse(JSON.parse(process.env.PERMISSIONS ? process.env.PERMISSIONS : '{}'));
 
 /**
  * Check if the request is authorized.
@@ -49,7 +51,8 @@ export async function getSession(req: Request, options: AuthConfig): Promise<Ses
 
   // `req.url` can exclude the domain, so
   // @ts-ignore
-	const url = new URL(`${options.basePath}/session`, `${process.env.DEV ? 'http' : 'https'}://${req.headers.host}`)
+  // TODO: revert to https here
+	const url = new URL(`${options.basePath}/session`, `${process.env.DEV ? 'http' : 'http'}://${req.headers.host}`)
   // @ts-ignore
 	const response = await Auth(new globalThis.Request(url, { headers: req.headers }), options)
 	const { status = 200 } = response

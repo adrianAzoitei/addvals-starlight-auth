@@ -16,11 +16,17 @@ const authConfig = generateConfig({
   audience: process.env.AUTH0_AUDIENCE!
 })
 
+const notFoundPage = fs.readFileSync(join(new URL(options.client).pathname, '404.html'), 'utf8')
 const unauthPage = fs.readFileSync(join(new URL(options.client).pathname, '401', 'index.html'), 'utf8')
 const unauthorizedPage = fs.readFileSync(join(new URL(options.client).pathname, '403', 'index.html'), 'utf8')
 
 const app = express();
 const handleStatic = express.static('dist/client/')
+
+function notFound(req: Request, res: Response, next: NextFunction) {
+  res.status(404)
+  res.send(notFoundPage);
+}
 
 function unauth(req: Request, res: Response, next: NextFunction) {
   res.status(401)
@@ -41,7 +47,7 @@ app.use(async (req, res, next) => {
       return unauthorized(req, res, next);
   }
   // handle static files first, then fallback on the SSR handler before hitting 404
-  handleStatic(req, res, () => ssrHandler(req, res, () => unauth(req, res, next)));
+  handleStatic(req, res, () => ssrHandler(req, res, () => notFound(req, res, next)));
 });
 
 app.listen(process.env.PORT, function() {
